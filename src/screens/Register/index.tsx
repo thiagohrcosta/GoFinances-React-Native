@@ -8,7 +8,8 @@ import {
   Header,
   Title,
   Form,
-  Fields
+  Fields,
+  TansactionsTypes
 } from "./styles";
 
 export function Register(){
@@ -25,10 +26,16 @@ export function Register(){
           <Input
             placeholder="Preço"
           />
-          <TransactionTypeButton
-            type='up'
-            title='Income'
-          />
+          <TansactionsTypes>
+            <TransactionTypeButton
+              type='up'
+              title='Income'
+            />
+            <TransactionTypeButton
+              type='down'
+              title='Outcome'
+            />
+          </TansactionsTypes>
         </Fields>
         <Button title="Enviar" />
       </Form>

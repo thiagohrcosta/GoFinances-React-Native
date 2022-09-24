@@ -25,7 +25,10 @@ export function TransactionTypeButton( {
   ...rest }: Props) {
   return (
     <Container {...rest}>
-      <Icon name={icons[type]}/>
+      <Icon
+        name={icons[type]}
+        type={type}
+      />
       <Title>
         {title}
       </Title>
