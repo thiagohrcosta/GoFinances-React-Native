@@ -30,13 +30,22 @@ export function HighlightCard({
   return (
     <Container type={type} >
       <Header>
-        <Title type={type}>{title}</Title>
-        <Icon name={icon[type]} type={type}/>
+        <Title type={type}>
+          {title}
+        </Title>
+        <Icon
+          name={icon[type]}
+          type={type}
+        />
       </Header>
 
       <Footer>
-        <Amount type={type}>{amount}</Amount>
-        <LastTransaction type={type}>{lastTrasaction}</LastTransaction>
+        <Amount type={type}>
+          {amount}
+        </Amount>
+        <LastTransaction type={type}>
+          {lastTrasaction}
+        </LastTransaction>
       </Footer>
 
     </Container>
