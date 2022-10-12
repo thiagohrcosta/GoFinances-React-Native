@@ -27,7 +27,7 @@ export default function App() {
     <ThemeProvider theme={theme}>
       {/* <Dashboard /> */}
       {/* <Register /> */}
-      <CategorySelect />
+      <Register />
     </ThemeProvider>
   );
 }
