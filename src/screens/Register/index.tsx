@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
-import { Modal, Keyboard, TouchableWithoutFeedback } from 'react-native';
+import {
+  Modal,
+  Keyboard,
+  TouchableWithoutFeedback,
+  Alert
+} from 'react-native';
 
 import { useForm } from 'react-hook-form';
 
@@ -9,6 +14,9 @@ import { Input } from '../../components/Form/Input';
 import { InputForm } from '../../components/Form/InputForm';
 import { TransactionTypeButton } from '../../components/Form/TransactionTypeButton';
 import { CategorySelect } from '../CategorySelect';
+
+import * as Yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
 
 import {
   Container,
@@ -24,6 +32,17 @@ interface FormData {
   amount: string;
 }
 
+const schema = Yup.object().shape({
+  name: Yup
+    .string()
+    .required('Nome é obrigatório'),
+  amount: Yup
+    .number()
+    .typeError('Informe um valor numérico')
+    .positive('O valor não pode ser negativo')
+    .required('O valor é obrigatório')
+});
+
 export function Register(){
   const [transactionType, setTransactionType] = useState('');
   const [categoryModalOpen, setCategoryModalOpen] = useState(false);
@@ -35,7 +54,10 @@ export function Register(){
   const {
     control,
     handleSubmit,
-  } = useForm();
+    formState: { errors }
+  } = useForm({
+    resolver: yupResolver(schema)
+  });
 
   function handleOpenSelectCategoryModal() {
     setCategoryModalOpen(true);
@@ -50,6 +72,13 @@ export function Register(){
   }
 
   function handleRegister(form: FormData) {
+    if (!transactionType) {
+      return Alert.alert("Selecione o tipo da transação");
+    }
+    if (category.key == "category") {
+      return Alert.alert("Selecione a categoria");
+    }
+
     const data = {
       name: form.name,
       amount: form.amount,
@@ -73,13 +102,14 @@ export function Register(){
               placeholder="Nome"
               autoCapitalize="sentences"
               autoCorrect={false}
+              error={errors.name && errors.name.message}
             />
             <InputForm
               name="amount"
               control={control}
               placeholder="Preço"
               keyboardType='numeric'
-
+              error={errors.amount && errors.amount.message}
             />
             <TansactionsTypes>
               <TransactionTypeButton
