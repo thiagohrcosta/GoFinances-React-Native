@@ -1,5 +1,6 @@
 import React from 'react';
-import { Dashboard } from './src/screens/Dashboard';
+import 'intl';
+import'intl/locale-data/jsonp/pt-BR';
 
 import { ThemeProvider } from 'styled-components';
 import theme from './src/global/styles/theme';
@@ -12,8 +13,6 @@ import {
   Poppins_500Medium,
   Poppins_700Bold
 } from '@expo-google-fonts/poppins';
-import { Register } from './src/screens/Register';
-import { CategorySelect } from './src/screens/CategorySelect';
 import { AppRoutes } from './src/routes/app.routes';
 
 export default function App() {
