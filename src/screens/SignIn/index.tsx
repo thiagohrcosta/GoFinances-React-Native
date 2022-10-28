@@ -4,8 +4,8 @@ import { RFValue } from "react-native-responsive-fontsize";
 import AppleSvg from "../../assets/apple.svg";
 import GoogleSvg from "../../assets/google.svg";
 import LogoSvg from "../../assets/logo.svg";
-import { AuthContext } from "../../AuthContext";
 import { SignInSocialButton } from "../../components/SignInSocialButton";
+import { useAuth } from "../../hooks/AuthContext";
 
 import {
     Container,
@@ -18,7 +18,7 @@ import {
 } from "./styles";
 
 export function SignIn() {
-  const data = useContext(AuthContext);
+  const {user} = useAuth();
 
   return (
     <Container>
