@@ -1,5 +1,5 @@
-import React, { useContext, useState } from "react";
-import { Alert, ActivityIndicator, Platform } from "react-native";
+import React, { useState } from "react";
+import { Alert, Platform } from "react-native";
 import { RFValue } from "react-native-responsive-fontsize";
 import { useTheme } from "styled-components";
 
@@ -21,7 +21,6 @@ import {
   FooterWrapper,
 } from "./styles";
 
-import theme from "../../Global/styles/theme";
 
 export function SignIn() {
   const [isLoading, setIsLoading] = useState(false);
@@ -85,13 +84,6 @@ export function SignIn() {
             />
           )}
         </FooterWrapper>
-
-        {isLoading && (
-          <ActivityIndicator
-            color={theme.colors.shape}
-            style={{ marginTop: 18 }}
-          />
-        )}
       </Footer>
     </Container>
   );
