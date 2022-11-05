@@ -24,6 +24,7 @@ import {
   TransactionList,
   LoadContainer
  } from './styles';
+import { useAuth } from '../../hooks/AuthContext';
 
 export interface DataListProps extends TransactionCardProps {
   id: string;
@@ -43,6 +44,7 @@ export interface DataListProps extends TransactionCardProps {
 
 export function Dashboard() {
   const [isLoading, setIsLoading] = useState(true);
+  const { user } = useAuth();
 
   const [transactions, setTransactions] = useState<DataListProps[]>([]);
   const [highlightData, setHighlightData] = useState<HightlightData>({} as HightlightData);
@@ -69,7 +71,7 @@ export function Dashboard() {
   }
 
   async function loadTransaction() {
-    const dataKey = "@goFinances:transactions";
+    const dataKey = `@goFinances:transactions_user:${user.id}`;
     const response = await AsyncStorage.getItem(dataKey);
 
     const transactions = response ? JSON.parse(response) : [];
